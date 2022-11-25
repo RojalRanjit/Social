@@ -14,18 +14,21 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+      
     <span>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('dashboard')}}"><h4>Home</h4></a>
-        </li>
+        @auth
+        <a href="{{route('login')}}" class="p-2 nav-link">{{auth()->user()->name}}</a>
+        @endauth
+        @guest
         <li class="nav-item">
           <a class="nav-link" href="{{route('login')}}"><h4>Login</h4></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('register')}}"><h4>Register</h4></a>
         </li>
+        @endguest
       </ul>
     </div>
     </span>

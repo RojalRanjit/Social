@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -11,6 +12,7 @@ class UserController extends Controller
     //
     public function registerUser(Request $req){
         // dd($req->all());
+
         $req->validate([
             'name' => 'required',
             'email' => 'required',
@@ -22,7 +24,27 @@ class UserController extends Controller
             'email' => $req->email,
             'password' => $req->password,
         ]);
-        return redirect('/login');
+        return redirect()->route('login');
+    }    
+
+    public function login(Request $req){
+        // dd($req->all());
+
+        $req->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if(Auth::attempt($req->only('email', 'password'))){
+            return redirect()->route('dashboard');
+        }else{
+            return back()->with('fail', 'User Not Found');
+        }
+
     }
-    
+
+    public function logout(){
+        auth()->logout();
+        return redirect()->route('login');
+    }
 }
