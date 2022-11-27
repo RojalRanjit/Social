@@ -14,13 +14,13 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-      
     <span>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         @auth
         <a href="{{route('login')}}" class="p-2 nav-link">{{auth()->user()->name}}</a>
         @endauth
+        
         @guest
         <li class="nav-item">
           <a class="nav-link" href="{{route('login')}}"><h4>Login</h4></a>

@@ -22,12 +22,12 @@ class UserController extends Controller
         User::create([
             'name' => $req->name,
             'email' => $req->email,
-            'password' => $req->password,
+            'password' => Hash::make($req->password)
         ]);
         return redirect()->route('login');
     }    
 
-    public function login(Request $req){
+    public function loginUser(Request $req){
         // dd($req->all());
 
         $req->validate([
