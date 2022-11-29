@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
+
 Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
 // Route::post('/', [HomeController::class, 'dashboard'])->name('dashboard');
 
