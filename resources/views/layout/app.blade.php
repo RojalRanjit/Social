@@ -19,6 +19,7 @@
       <ul class="navbar-nav">
         @auth
         <a href="{{route('login')}}" class="p-2 nav-link">{{auth()->user()->name}}</a>
+        <a href="{{route('logout')}}" class="p-2 nav-link">Logout</a>
         @endauth
         
         @guest
